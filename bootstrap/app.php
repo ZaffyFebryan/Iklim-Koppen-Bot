@@ -1,11 +1,10 @@
-```php
+
 <?php
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
-use Throwable;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
@@ -32,7 +31,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
 
         // Catat error asli ke Runtime Logs Vercel
-        $exceptions->report(function (Throwable $e) {
+        $exceptions->report(function (\Throwable $e) {
             error_log(
                 'LARAVEL ORIGINAL ERROR: '.get_class($e)
                 .' - '.$e->getMessage()
