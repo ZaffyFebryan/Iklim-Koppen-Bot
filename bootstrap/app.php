@@ -1,4 +1,4 @@
-
+```php
 <?php
 
 use Illuminate\Foundation\Application;
@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Throwable;
 
 return Application::configure(basePath: dirname(__DIR__))
+    ->withProviders([
+        \Illuminate\View\ViewServiceProvider::class,
+    ])
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
@@ -38,7 +41,6 @@ return Application::configure(basePath: dirname(__DIR__))
             );
         });
 
-        // Penanganan respons JSON
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) =>
                 $request->is('api/*') || $request->expectsJson(),
